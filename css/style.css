@@ -1,0 +1,29 @@
+body {
+    background: #191414;
+    font-family: 'Montserrat', sans-serif;
+}
+
+header {
+    text-align: center;
+    margin: 2rem;
+}
+
+h1 {
+    color: #1DB954;
+}
+
+#discography {
+    color: #1DB954;
+    max-width: 300px;
+    margin: auto;
+    border: 1px solid olive;
+    padding: 2rem;
+}
+
+/* iPhone XR screen width */
+@media only screen and (min-width: 844px) {
+    main {
+        /* display: flex; */
+        max-width: 844px;
+    }
+}
