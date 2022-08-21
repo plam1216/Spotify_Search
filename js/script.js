@@ -36,7 +36,7 @@ const albums = {
 
 
 
-//			GET DISCOGRAPHY OVERVIEW
+			// GET DISCOGRAPHY OVERVIEW
 // const overview = {
 // 	"async": true,
 // 	"crossDomain": true,
@@ -70,12 +70,47 @@ function handleSubmit(event){
 	
 	$.ajax(topSearch).then(
 		function(data){
+			// console.log(data)
 			console.log(data.artists.items[0].data.uri)
 			// returns something like this spotify:artist:3TVXtAsR1Inumwj472S9r4
 			// split by :
 			// index 2 to get ONLY artist ID
 			let artistID = data.artists.items[0].data.uri.split(':')[2]
-			console.log(artistID)
+			console.log('Artist ID: ',artistID)
+
+			getDiscography()
+		},
+		function(error){
+			console.log('something went wrong...')
+		}
+	)
+}
+	
+function getDiscography(){
+	$.ajax(albums).then(
+		function(data){
+			// console.log(data)
+			// gets one album
+			console.log('Album: ', data.data.artist.discography.albums.items[0].releases.items[0].name)
+			// console.log(data.data.artist.discography.albums.items)
+
+			//  assigns array of albums to albums variable
+			let albums = data.data.artist.discography.albums.items
+			// console.log(albums)
+
+			// iterate through array using jQuery to get each album name
+			// Spotify always stores the album name at index 0
+			$.each(albums, function(index, value) {
+				let albumName = value.releases.items[0].name;
+				// console.log(albumName)
+				$discography.append(`<p>${albumName}</p>`)
+			})
+
+			// data.data.artist.discography.albums.items.each(item, function(){
+			// 	let albumName = album.releases.items[0].name
+			// })
+
+
 		},
 		function(error){
 			console.log('something went wrong...')
