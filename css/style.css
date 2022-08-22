@@ -1,6 +1,8 @@
 body {
     background: #191414;
     font-family: 'Montserrat', sans-serif;
+    /* margin: 0; */
+    padding: 0;
 }
 
 header {
@@ -10,20 +12,58 @@ header {
 
 h1 {
     color: #1DB954;
+    font-size: 4rem;
+}
+
+input {
+    padding: 5px;
 }
 
 #discography {
     color: #1DB954;
-    max-width: 300px;
+    min-width: 150px;
     margin: auto;
     border: 1px solid olive;
     padding: 2rem;
 }
 
-/* iPhone XR screen width */
-@media only screen and (min-width: 844px) {
-    main {
-        /* display: flex; */
-        max-width: 844px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 20px;
+}
+
+.album {
+    text-align: center;
+}
+
+img {
+    max-width: 100%;
+    align-self: center;
+}
+
+p {
+    font-weight: bold;
+}
+
+/* iPhone XR screen width 414px */
+/* Surface Duo 520px */
+/* max-width affects screens of at 844px or lower */
+/* min-width affects screens of at 844px or larger */
+@media only screen and (max-width: 540px) {
+    h1 {
+        color: #1DB954;
+        font-size: 1.9rem;
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 }
+
+/* ipad air */
+/* @media only screen and (min-width: 2560px) {
+    h1 {
+        font-size: 5rem;
+    }
+} */
