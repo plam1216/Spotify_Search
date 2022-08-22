@@ -79,14 +79,6 @@ p {
     transform: translate(-50%, -50%) scale(0);
     border: 3px solid orange;
     z-index: 10;
-    /* transition: 200ms ease-in-out; */
-    /* background-color: antiquewhite; */
-    /* width: 200px; */
-    /* height: 200px; */
-    /* max-width: 80%; */
-    /* pointer-events: none; */
-    /* visibility: hidden; */
-    /* opacity: 0; */
 }
 
 .modal.active {
@@ -97,8 +89,6 @@ p {
     color: white;
     background-color: salmon;
     text-align: center;
-    /* width: 40%; */
-    /* padding: 1rem; */
 }
 
 #modalImg {
@@ -107,8 +97,12 @@ p {
 
 #tracklist {
     padding: 0;
-    display: inline-block;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     text-align: center;
+    list-style-type: none;
+    
 }
 
 #overlay {
@@ -129,10 +123,8 @@ p {
     pointer-events: all;
 }
 
-/* iPhone XR screen width 414px */
-/* Surface Duo 520px */
-/* max-width affects screens of at 844px or lower */
-/* min-width affects screens of at 844px or larger */
+/* max-width affects screens of at 540px or lower */
+/* min-width affects screens of at 540px or larger */
 @media only screen and (max-width: 540px) {
     #spotifyLogo {
         width: 1.5rem;
@@ -148,7 +140,6 @@ p {
     }
 }
 
-/* 768 */
 @media only screen and (min-width: 540px) {
     input {
         height: 50px;
