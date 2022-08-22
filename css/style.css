@@ -10,13 +10,33 @@ header {
     margin: 2rem;
 }
 
+#spotifyLogo {
+    width: 3.5rem;
+    vertical-align: middle;
+    margin: 0 5px 5px 0;
+}
+
 h1 {
     color: #1DB954;
     font-size: 4rem;
+
 }
 
 input {
     padding: 5px;
+    border-radius: 30px;
+    color: white;
+}
+
+#artistName{
+    text-align: center;
+    width: 55%;
+}
+
+#submitBtn {
+    font-weight: bold;
+    background-color: rgb(173, 172, 172);
+    width: 28%;
 }
 
 #discography {
@@ -51,9 +71,13 @@ p {
 /* max-width affects screens of at 844px or lower */
 /* min-width affects screens of at 844px or larger */
 @media only screen and (max-width: 540px) {
+    #spotifyLogo {
+        width: 1.5rem;
+    }
+    
     h1 {
         color: #1DB954;
-        font-size: 1.9rem;
+        font-size: 1.7rem;
     }
 
     .grid {
@@ -61,9 +85,14 @@ p {
     }
 }
 
-/* ipad air */
-/* @media only screen and (min-width: 2560px) {
-    h1 {
-        font-size: 5rem;
+/* 768 */
+@media only screen and (min-width: 540px) {
+    input {
+        height: 50px;
+        font-size: 1.2rem;
     }
-} */
+
+    #artistName {
+        height: 36px
+    }
+}
