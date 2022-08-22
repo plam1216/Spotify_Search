@@ -1,12 +1,5 @@
-// CURRENTLY TESTING WITH A RANDOM ARTIST ID
-// WILL IMPLEMENT USER INPUT FOR AN ARTIST
-
-// this is made so it only searches Spotify for music artists
-// podcasts, albums, playlists, etc. are not searched because url is set to search only 'artist'
-
 // topSearch is displaying all resuilts, but I only will be getting the top result artist ID
 
-// drake 3TVXtAsR1Inumwj472S9r4
 let topSearch = {
 	"async": true,
 	"crossDomain": true,
@@ -51,18 +44,28 @@ const $input = $('input[type="text"]')
 const $form = $('form')
 const $discography = $('#discography')
 
+const $body = $('body')
+const $spotifyLogo = $('#spotifyLogo')
+const $modal = $('.modal')
+// const $modalBody = $('.modalBody')
+const $overlay = $('#overlay')
+
+$spotifyLogo.on('click', popUpModal)
+
+
+function popUpModal() {
+	$modal.addClass('active')
+	$overlay.addClass('active')
+}
+
+$overlay.on('click', closeModal)
+
+function closeModal() {
+	$modal.removeClass('active')
+	$overlay.removeClass('active')
+}
+
 $form.on('submit', handleSubmit)
-
-
-// .then() has a fail case
-// .done() would be called when object resolves, wouldn't show the error if there is one
-
-// function getArtistUrl(inputVal) {
-	// topSearch.url = `url": "https://spotify23.p.rapidapi.com/search/?q=${inputVal}&type=%artist&offset=0&limit=10&numberOfTopResults=5`
-	
-// 	console.log('getartist', topSearch)
-// }
-
 
 function handleSubmit(event){ 
 	event.preventDefault()
@@ -100,30 +103,25 @@ function getDiscography(artistID){
 	$.ajax(albums).then(
 		function(data){
 			console.log(data)
-			// gets one album
+			// Get one album
 			// Spotify always stores the album name at index 0
 			console.log('Album: ', data.data.artist.discography.albums.items[0].releases.items[0].name)
-			// theres 3 images, 300x300, 64x64, 600x600
+			// Spotify has 3 images, 300x300, 64x64, 600x600
 			console.log('Artwork: ', data.data.artist.discography.albums.items[0].releases.items[0].coverArt.sources[0].url)
 			// console.log(data.data.artist.discography.albums.items)
 
-			//  assigns array of albums to albums variable
+			//  Assigns array of albums to 'albums' variable
 			let albums = data.data.artist.discography.albums.items
 			// console.log(albums)
 
-			// iterate through array using jQuery to get each album name
+			// Iterate through array using jQuery '.each' to get album name
 			// Spotify always stores the album name at index 0
 			$.each(albums, function(index, value) {
 				let albumName = value.releases.items[0].name;				
 				let coverArt = value.releases.items[0].coverArt.sources[0].url
-
-				$discography.append(`<p><img src='${coverArt}'></img>${albumName}</p>`)
+				
+				$discography.append(`<div class="album"><img src='${coverArt}'></img><p>${albumName}</p></div>`)
 			})
-
-			// data.data.artist.discography.albums.items.each(item, function(){
-			// 	let albumName = album.releases.items[0].name
-			// })
-
 
 		},
 		function(error){

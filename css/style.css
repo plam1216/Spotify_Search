@@ -25,7 +25,6 @@ h1 {
 input {
     padding: 5px;
     border-radius: 30px;
-    color: white;
 }
 
 #artistName{
@@ -35,9 +34,15 @@ input {
 
 #submitBtn {
     font-weight: bold;
-    background-color: rgb(173, 172, 172);
+    background-color: rgb(172, 165, 165);
     width: 28%;
+    color: white;
 }
+
+#submitBtn:hover {
+    background-color: #1DB954;
+}
+
 
 #discography {
     color: #1DB954;
@@ -64,6 +69,64 @@ img {
 
 p {
     font-weight: bold;
+}
+
+.modal {
+    color: orange;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border: 3px solid orange;
+    z-index: 10;
+    /* transition: 200ms ease-in-out; */
+    /* background-color: antiquewhite; */
+    /* width: 200px; */
+    /* height: 200px; */
+    /* max-width: 80%; */
+    /* pointer-events: none; */
+    /* visibility: hidden; */
+    /* opacity: 0; */
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modalBody {
+    color: white;
+    background-color: salmon;
+    text-align: center;
+    /* width: 40%; */
+    /* padding: 1rem; */
+}
+
+#modalImg {
+    width: 150px;
+}
+
+#tracklist {
+    padding: 0;
+    display: inline-block;
+    text-align: center;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(29, 185, 84, 0.5);
+    pointer-events: none;
+    
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
 }
 
 /* iPhone XR screen width 414px */
