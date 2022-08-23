@@ -1,7 +1,16 @@
+html {
+    height: 100%;
+}
+
 body {
     background: #191414;
+    background-image: url(/images/minimal_bg.jpg);
+    /* background-image: url(/images/headphones_bg.jpeg); */
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     font-family: 'Montserrat', sans-serif;
-    /* margin: 0; */
     padding: 0;
 }
 
@@ -17,9 +26,9 @@ header {
 }
 
 h1 {
-    color: #1DB954;
+    color: #27d062;
     font-size: 4rem;
-
+    text-shadow: 2px 2px 2px #6E8894;
 }
 
 input {
@@ -48,7 +57,6 @@ input {
     color: #1DB954;
     min-width: 150px;
     margin: auto;
-    border: 3px solid goldenrod;
     padding: 2rem;
 }
 
@@ -77,7 +85,6 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    /* border: 3px solid goldenrod; */
     z-index: 10;
     width: 72%;
 }
@@ -88,11 +95,12 @@ p {
 
 .modalBody {
     color: white;
-    /* background-color: salmon; */
     background-image: url(/images/spotify_background.png);
     background-size: 100%;
     text-align: center;
     padding: 10px;
+    max-height: 80vh;
+    overflow: auto;
 }
 
 #modalImg {
@@ -102,7 +110,7 @@ p {
 }
 
 #modalAlbumName {
-    margin: 10px;
+    margin: 5px;
     text-shadow: 5px 5px 15px goldenrod;
 }
 
@@ -116,7 +124,7 @@ p {
 }
 
 li {
-    font-size: 3vh;
+    font-size: 2.5vh;
     }
 
 #overlay {
