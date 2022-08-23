@@ -48,7 +48,7 @@ input {
     color: #1DB954;
     min-width: 150px;
     margin: auto;
-    border: 1px solid olive;
+    border: 3px solid goldenrod;
     padding: 2rem;
 }
 
@@ -69,16 +69,17 @@ img {
 
 p {
     font-weight: bold;
+    font-size: 2rem;
 }
 
 .modal {
-    color: orange;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0);
-    border: 3px solid orange;
+    /* border: 3px solid goldenrod; */
     z-index: 10;
+    width: 72%;
 }
 
 .modal.active {
@@ -87,23 +88,36 @@ p {
 
 .modalBody {
     color: white;
-    background-color: salmon;
+    /* background-color: salmon; */
+    background-image: url(/images/spotify_background.png);
+    background-size: 100%;
     text-align: center;
+    padding: 10px;
 }
 
 #modalImg {
-    width: 150px;
+    width: 125px;
+    margin: 10px 10px 0 10px;
+    border: 2px solid goldenrod
+}
+
+#modalAlbumName {
+    margin: 10px;
+    text-shadow: 5px 5px 15px goldenrod;
 }
 
 #tracklist {
-    padding: 0;
+    padding: 2px;
     margin: 0;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    list-style-type: none;
-    
+    display: inline-block;
+    text-align: left;
+    text-shadow: 3px 3px 15px goldenrod;
+    width: 75%;
 }
+
+li {
+    font-size: 3vh;
+    }
 
 #overlay {
     position: fixed;
@@ -113,7 +127,7 @@ p {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(29, 185, 84, 0.5);
+    background-color: rgba(29, 185, 84, 0.7);
     pointer-events: none;
     
 }
@@ -138,6 +152,15 @@ p {
     .grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
+
+    p {
+        font-size: 1.5rem;
+    }
+
+    li {
+        font-size: 2vh;
+    }
+
 }
 
 @media only screen and (min-width: 540px) {
