@@ -37,7 +37,7 @@
 - [Trello](https://trello.com/b/ROT3DfpQ/show-artist-discog-spotify-api)
 
 ## <a name="deployment"></a> Deployed Link
-- [GitHub Pages](https://plam1216.github.io/Spotify_Search/)
+- [Netlify](https://chipper-puppy-944109.netlify.app/)
 
 ## <a name="resources"></a> Resources:
 - [MDN](https://developer.mozilla.org/en-US/)
