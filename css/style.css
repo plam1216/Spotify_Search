@@ -24,9 +24,9 @@ header {
 }
 
 h1 {
-    color: #27d062;
+    color: #1DB954;
     font-size: 4rem;
-    text-shadow: 2px 2px 2px #6E8894;
+    text-shadow: 2px 2px 50px #DFFDFF;
 }
 
 input {
