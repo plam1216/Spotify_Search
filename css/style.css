@@ -4,8 +4,6 @@ html {
 
 body {
     background: #191414;
-    background-image: url(/images/minimal_bg.jpg);
-    /* background-image: url(/images/headphones_bg.jpeg); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -146,7 +144,6 @@ li {
 }
 
 /* max-width affects screens of at 540px or lower */
-/* min-width affects screens of at 540px or larger */
 @media only screen and (max-width: 540px) {
     #spotifyLogo {
         width: 1.5rem;
