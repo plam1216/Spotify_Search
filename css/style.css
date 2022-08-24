@@ -5,6 +5,7 @@ html {
 body {
     background: #191414;
     background-position: center;
+    background-image: url('/images/homepage_themes/aurora.jpeg');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;

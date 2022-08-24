@@ -66,7 +66,7 @@ const images = [
 // on page load randomly choose background image from images array
 $(document).ready(function(){
 	let randomIndex = Math.floor(Math.random() * images.length);
-    let img = images[randomIndex];
+	let img = images[randomIndex];
 	let imgPath = homepageThemesPath + img;
     $body.css('background-image', `url(${imgPath})`);
 });
