@@ -45,13 +45,11 @@ const $modalBody = $('modalBody')
 const $modalImg = $('#modalImg')
 const $modalAlbumName = $('#modalAlbumName')
 const $trackList = $('#tracklist')
-// const $li = $('li')
-// const album = $('.album')
 
 const $spotifyLogo = $('#spotifyLogo')
 const $overlay = $('#overlay')
 
-const homepageThemesPath = '/images/homepage_themes/'
+const homepageThemesPath = '../images/homepage_themes/'
 
 const images = [
 	'minimal_bg.jpg', 
