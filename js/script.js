@@ -34,16 +34,12 @@ const albumTracks = {
 	}
 };
 
-// $.ajax(settings).done(function (response) {
-// 	console.log(response);
-// });
-
 const $artistName = $('#artistName')
 const $input = $('input[type="text"]')
 const $form = $('form')
 const $discography = $('#discography')
 
-// const $body = $('body')
+const $body = $('body')
 const $modal = $('.modal')
 const $modalBody = $('modalBody')
 const $modalImg = $('#modalImg')
@@ -55,6 +51,25 @@ const $trackList = $('#tracklist')
 const $spotifyLogo = $('#spotifyLogo')
 const $overlay = $('#overlay')
 
+const homepageThemesPath = '/images/homepage_themes/'
+
+const images = [
+	'minimal_bg.jpg', 
+	'aurora.jpeg', 
+	'guitar.jpeg',
+	'nebula.jpeg', 
+	'sci_fi.jpeg', 
+	'subway.jpeg',
+	'music.jpg'
+]
+
+// on page load randomly choose background image from images array
+$(document).ready(function(){
+	let randomIndex = Math.floor(Math.random() * images.length);
+    let img = images[randomIndex];
+	let imgPath = homepageThemesPath + img;
+    $body.css('background-image', `url(${imgPath})`);
+});
 
 $form.on('submit', handleSubmit)
 
@@ -65,19 +80,13 @@ function handleSubmit(event){
 	let inputVal = $input.val()
 
 	topSearch.url = `https://spotify23.p.rapidapi.com/search/?q=${inputVal}&type=%artist&offset=0&limit=10&numberOfTopResults=5`
-
-	// getArtistUrl(inputVal)
 	
-	// console.log('handle', topSearch)
 	$.ajax(topSearch).then(
 		function(data){
-			// console.log(data)
-			console.log('Artist URI', data.artists.items[0].data.uri)
-			// returns something like this spotify:artist:3TVXtAsR1Inumwj472S9r4
-			// split by :
-			// index 2 to get ONLY artist ID 
 			let artistID = data.artists.items[0].data.uri.split(':')[2]
-			console.log('Artist ID: ',artistID)
+			// data.artists.items[0].data.uri returns something like: spotify:artist:3TVXtAsR1Inumwj472S9r4
+			// split by :
+			// index 2 to get artist ID 
 
 			getDiscography(artistID)
 		},
@@ -93,45 +102,37 @@ function getDiscography(artistID){
 	
 	$.ajax(albums).then(
 		function(data){
-			console.log(data)
-			// Get one album
-			// Spotify always stores the album name at index 0
-			console.log('Album: ', data.data.artist.discography.albums.items[0].releases.items[0].name)
-			// Spotify has 3 images, 300x300, 64x64, 600x600
-			console.log('Artwork: ', data.data.artist.discography.albums.items[0].releases.items[0].coverArt.sources[0].url)
-			// console.log(data.data.artist.discography.albums.items)
-
+			
 			//  Assigns array of albums to 'albums' variable
 			let albums = data.data.artist.discography.albums.items
-			// console.log(albums)
-
+			
 			// Iterate through array using jQuery '.each' to get album name
 			// Spotify always stores the album name at index 0
 			$.each(albums, function(index, value) {
-				let albumName = value.releases.items[0].name;				
+				// Spotify stores the album name at index 0
+				let albumName = value.releases.items[0].name;			
+
+				// Spotify has 3 images: 300x300, 64x64, 600x600;
 				let coverArtID = value.releases.items[0].coverArt.sources[0].url
 				let albumID = value.releases.items[0].id
-				// console.log(coverArtID)
-				$discography.append(`<div class="album" id=${albumID}><img src='${coverArtID}'></img><p>${albumName}</p></div>`)
-				
-				// console.log($discography)
+
+				$discography.append(`<div class="album" id=${albumID}><img src='${coverArtID}'></img><p>${albumName}</p></div>`)				
 			})			
 			
 			console.log('discography', $discography)
 			let $albumArr = $('.album')
 			console.log('albums arr', $albumArr)
 
-			// $albumArr.on('click', popUpModal)
 			$albumArr.on('click', function(event){
-				console.log(event.target.closest('div'))
-				// 'target' is not jquery, need to use getAttribute
-				// id of the album clicked
+				// 'target' is not jquery, use Javascript getAttribute() to get ID of album clicked
 				let albumID = event.target.closest('div').getAttribute('id');
+
 				// img src of the album clicked
 				let modalArtwork = event.target.closest('div').getElementsByTagName('img')[0].src;
 
 				let modalAlbumName = ''
-				// loops through array of albums, compare clicked album's ID to each of the album ids in the artist's discography
+
+				// loops through array of albums, compare clicked album's ID to each of the album IDs in the artist's discography
 				// when there is a match assign that name to modalAlbumName
 				$.each(albums, function(index, value) {
 					if(value.releases.items[0].id === albumID) {
@@ -139,12 +140,6 @@ function getDiscography(artistID){
 					}
 				})				
 				
-				// event.target.closest('div').getElementsByTagName('p')[0].innerHTML = modalAlbumName;
-
-				console.log('album id', albumID)
-				console.log('modal artwork', modalArtwork);
-				console.log('modal album name', modalAlbumName);
-
 				popUpModal(albumID, modalArtwork, modalAlbumName);
 			})
 		},
@@ -155,15 +150,6 @@ function getDiscography(artistID){
 }
 
 function popUpModal(albumID, modalArtwork, modalAlbumName) {
-	console.log('clicking on popUpModal')
-	// console.log('popupmodal albumID')
-
-	console.log('popup album id', albumID)
-	console.log('popup artwork', modalArtwork);
-	console.log('popup album name', modalAlbumName);
-
-	// $modalBody.append("<img src="+modalArtwork+">")
-	// $modalBody.append("<p>"+modalAlbumName+"</p>")
 	$modalAlbumName.append(modalAlbumName)
 	$modalImg.attr('src', modalArtwork)
 
@@ -171,13 +157,11 @@ function popUpModal(albumID, modalArtwork, modalAlbumName) {
 	console.log($modalImg)
 	
 	albumTracks.url = `https://spotify23.p.rapidapi.com/album_tracks/?id=${albumID}&offset=0&limit=300`
-	
-	// console.log('Modal Tracklist', albumTracks)
-	
+		
 	$.ajax(albumTracks).then(
 		function(data){
-			console.log(data.data.album.tracks.items)
 			let albArr = data.data.album.tracks.items
+
 			$.each(albArr, function(index, value){
 				console.log('value', value)
 				console.log('name', value.track.name)
@@ -189,14 +173,6 @@ function popUpModal(albumID, modalArtwork, modalAlbumName) {
 			alert('popUpModal not working')
 		}
 	)
-	$modal.addClass('active')
-	$overlay.addClass('active')
-}
-
-// this is only for spotify logo, should be for any album
-$spotifyLogo.on('click', spotifyModal)
-
-function spotifyModal() {
 	$modal.addClass('active')
 	$overlay.addClass('active')
 }
