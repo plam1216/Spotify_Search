@@ -28,6 +28,7 @@
 - User can search for an artist
 - User can select an album, showing the albums tracklist
 - Randomized homepage background image
+- Animation when hitting submit
 - Mobile friendly
 
 ## <a name="wireframe"></a> Wireframe
