@@ -82,7 +82,7 @@ function handleSubmit(event){
 	$.ajax(topSearch).then(
 		function(data){
 			let artistID = data.artists.items[0].data.uri.split(':')[2]
-			// data.artists.items[0].data.uri returns something like: spotify:artist:3TVXtAsR1Inumwj472S9r4
+			// spotify:artist:3TVXtAsR1Inumwj472S9r4
 			// split by :
 			// index 2 to get artist ID 
 
