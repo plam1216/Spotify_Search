@@ -69,11 +69,13 @@ $(document).ready(function(){
     $body.css('background-image', `url(${imgPath})`);
 });
 
-$form.on('submit', handleSubmit)
+setTimeout($form.on('submit', handleSubmit), 1500)
 
 function handleSubmit(event){ 
 	event.preventDefault()
 	
+	$spotifyLogo.css('-webkit-animation', 'spin 2s ease 1')
+
 	$discography.empty()
 	let inputVal = $input.val()
 
@@ -148,21 +150,18 @@ function getDiscography(artistID){
 }
 
 function popUpModal(albumID, modalArtwork, modalAlbumName) {
+	// append artwork and album name to the popUpModal
 	$modalAlbumName.append(modalAlbumName)
 	$modalImg.attr('src', modalArtwork)
 
-	console.log($modalAlbumName)
-	console.log($modalImg)
-	
 	albumTracks.url = `https://spotify23.p.rapidapi.com/album_tracks/?id=${albumID}&offset=0&limit=300`
 		
 	$.ajax(albumTracks).then(
 		function(data){
 			let albArr = data.data.album.tracks.items
-
+			
+			// loop through album to get each track name and append as list items to the tracklist
 			$.each(albArr, function(index, value){
-				console.log('value', value)
-				console.log('name', value.track.name)
 				$trackList.append(`<li>${value.track.name}</li>`)
 			})
 		}, 
@@ -171,13 +170,17 @@ function popUpModal(albumID, modalArtwork, modalAlbumName) {
 			alert('popUpModal not working')
 		}
 	)
+
+	// makes the modal and green overlay appear
 	$modal.addClass('active')
 	$overlay.addClass('active')
 }
 
+// clicking outside the modal makes it disappear
 $overlay.on('click', closeModal)
 
 function closeModal() {
+	// empty content of the modal
 	$modalAlbumName.empty()
 	$trackList.empty()
 	$modal.removeClass('active')
