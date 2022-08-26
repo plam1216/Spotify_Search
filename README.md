@@ -39,6 +39,7 @@
 
 ## <a name="deployment"></a> Deployed Link
 - [Netlify](https://chipper-puppy-944109.netlify.app/)
+  - If you encounter a 404 Error or nothing loads on search it's because the monthly API **call limit (500)** has been reached
 
 ## <a name="resources"></a> Resources:
 - [MDN](https://developer.mozilla.org/en-US/)
