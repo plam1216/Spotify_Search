@@ -38,7 +38,7 @@
 - [Trello](https://trello.com/b/ROT3DfpQ/show-artist-discog-spotify-api)
 
 ## <a name="deployment"></a> Deployed Link
-- [Netlify](https://chipper-puppy-944109.netlify.app/)
+- [Netlify](https://spotify-search-pl.netlify.app/)
   - If you encounter a 404 Error or nothing loads on search it's because the monthly API **call limit (500)** has been reached
 
 ## <a name="resources"></a> Resources:
